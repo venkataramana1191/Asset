@@ -18,7 +18,7 @@
             margin-block-start: -8px;
             width: 100%;
             position: fixed;
-            z-index: 1;
+            z-index: 101;
             /* margin-left: -8px; */
         }
 
@@ -54,7 +54,7 @@
             background-color: rgb(106, 106, 249);
             border-radius: 2em;
             height: 35px;
-            margin-top: 8px;
+            margin-top: 4px;
             width: 38px;
             padding-top: 9px;
             padding-left: 12px;
@@ -74,7 +74,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 260px;
+  width: 200px;
   background: #11101d;
   z-index: 100;
   transition: all 0.5s ease;
@@ -110,7 +110,7 @@
 }
 .sidebar .nav-links{
   height: 100%;
-  padding: 30px 0 150px 0;
+  padding: 45px 0 150px 0;
   overflow: auto;
 }
 .sidebar.close .nav-links{
@@ -125,7 +125,7 @@
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li:hover{
-  background: #1d1b31;
+  background: #20a8d8;
 }
 .sidebar .nav-links li .iocn-link{
   display: flex;
@@ -169,7 +169,7 @@
 .sidebar .nav-links li .sub-menu{
   padding: 6px 6px 14px 80px;
   margin-top: -10px;
-  background: #1d1b31;
+  background: #20a8d8;
   display: none;
 }
 .sidebar .nav-links li.showMenu .sub-menu{
@@ -272,12 +272,16 @@
   font-size: 12px;
 }
 .home-section{
-  position: relative;
+  position: static;
   background: #E4E9F7;
   height: 100vh;
-  left: 260px;
-  width: calc(100% - 260px);
+  left: 200px;
+  width: calc(100% - 200px);
   transition: all 0.5s ease;
+  position: relative;
+    /* background: red; */
+    
+    padding-top: 36px;
 }
 .sidebar.close ~ .home-section{
   left: 78px;
@@ -321,12 +325,24 @@
     left: 0;
   }
 }
+.logo{
+  display: flex; 
+  flex-direction: row;
+  width: 150px;
+  margin-top: 15px;
+}
+.notification{
+  display: flex; flex-direction: row;width: 100px;
+}
+.notification>img{
+  margin-top:4px;
+}
 </style>
 </head>
 <body class="app sidebar-compact header-fixed sidebar-lg-show sidebar-fixed ng-tns-0-1">
     <nav class="navbar">
-        <div><img src="./assets/newwhitelogo.svg" alt="" width="180" height="50"></div>
-        <div style="display: flex; flex-direction: row;width: 170px; margin-top: 15px;">
+        <div><img src="./assets/newwhitelogo.svg" alt="" width="200" height="70"></div>
+        <div class="logo">
             <div><select name="country" id="Country">
                     <option style="background-image:url('./assets/indiaflag.svg');" value="India">
 
@@ -334,7 +350,7 @@
                     <option value="USA">USA</option>
                 </select>
             </div>
-            <div style="display: flex; flex-direction: row;width: 100px; margin-top: -2px;">
+            <div class="notification">
                 <img  src="./assets/notification.jpeg" alt="" height="30">
                 <div class="user">
                     <span>SA</span>
@@ -343,9 +359,7 @@
         </div>
     </nav>
   <div class="sidebar ">
-    <div class="logo-details">
-     <img src="./assets/newwhitelogo.svg" alt="">
-    </div>
+   
     <ul class="nav-links">
       <li>
         <a href="#">
@@ -450,7 +464,7 @@
   </li>
 </ul>
   </div>
-  <section class="home-section">
+  <section class="home-section m-auto">
     <div class="home-content">
       <!-- <i class='bx bx-menu' ></i> -->
       <p class="mt-3">Welcome to Bentolabs & AssetMonk</p>
