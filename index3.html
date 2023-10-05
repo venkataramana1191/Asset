@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> BentoLabs |AssetMonk</title>
+    <link rel="stylesheet" href="">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+ 
+     .navbar1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 60px;
+            background-color: #23282c;
+            margin-block-start: -8px;
+            width: 100%;
+            position: fixed;
+            z-index: 101;
+            /* margin-left: -8px; */
+        }
+
+        #Country {
+            width: 100px;
+            color: black;
+            padding: 7px 14px;
+            margin: 4px;
+            border-radius: 2px;
+            z-index: 1;
+            border: rgb(24, 129, 146) 2px solid;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .sidebar {
+            z-index: 2;
+            overflow-y: scroll;
+            scrollbar-color: #20a8d8 white;
+
+        }
+
+        select>option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .country {
+            display: flex;
+            flex-direction: row;
+            width: 100px;
+            justify-content: space-between;
+        }
+        .user {
+            background-color: rgb(106, 106, 249);
+            border-radius: 2em;
+            height: 35px;
+            margin-top: 4px;
+            width: 38px;
+            padding:10px;
+            font-size: 12px;
+            color: white;
+        }
+        .user a{
+          color: white;
+          text-decoration: none;
+        }
+   /* Google Fonts Import Link */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: fit-content;
+  background: #11101d;
+  z-index: 100;
+  transition: all 0.5s ease;
+}
+.sidebar.close{
+  width: 78px;
+}
+.sidebar .logo-details{
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 30px;
+  color: #fff;
+  height: 50px;
+  min-width: 78px;
+  text-align: center;
+  line-height: 50px;
+}
+.sidebar .logo-details .logo_name{
+  font-size: 22px;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s ease;
+  transition-delay: 0.1s;
+}
+.sidebar.close .logo-details .logo_name{
+  transition-delay: 0s;
+  opacity: 0;
+  pointer-events: none;
+}
+/* .sidebar .nav-links{
+  height: 100%;
+  padding: 45px 0 0 0;
+  overflow: auto;
+} */
+.sidebar {
+  height: 100%;
+  padding: 45px 0 0 0;
+  overflow-x:none;
+}
+.sidebar.close .nav-links{
+  overflow: visible;
+}
+.sidebar .nav-links::-webkit-scrollbar{
+  display: none;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li:hover{
+  background: #20a8d8;
+}
+.sidebar .nav-links .sub-menu li a:hover{
+  background: black
+}
+.sidebar .nav-links li .iocn-link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar.close .nav-links li .iocn-link{
+  display: block
+}
+.sidebar .nav-links li i{
+  height: 50px;
+  min-width: 70px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li.showMenu i.arrow{
+  transform: rotate(-90deg);
+}
+.sidebar.close .nav-links i.arrow{
+  display: none;
+}
+.sidebar .nav-links li a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.sidebar .nav-links li a .link_name{
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  transition: all 0.4s ease;
+  flex-wrap: wrap;
+}
+.sidebar.close .nav-links li a .link_name{
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links li .sub-menu{
+  padding: 6px 6px 14px 15px;
+  margin-top: -10px;
+  /* background: #20a8d8; */
+  display: none;
+}
+.sidebar .nav-links li.showMenu .sub-menu{
+  display: block;
+}
+.sidebar .nav-links li .sub-menu a{
+  color: #fff;
+  font-size: 15px;
+  padding: 5px ;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li .sub-menu a:hover{
+  opacity: 1;
+}
+.sidebar.close .nav-links li .sub-menu{
+  position: absolute;
+  left: 100%;
+  top: -10px;
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 0 6px 6px 0;
+  opacity: 0;
+  display: block;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar.close .nav-links li:hover .sub-menu{
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li .sub-menu .link_name{
+  display: none;
+}
+.sidebar.close .nav-links li .sub-menu .link_name{
+  font-size: 18px;
+  opacity: 1;
+  display: block;
+}
+.sidebar .nav-links li .sub-menu.blank{
+  opacity: 1;
+  pointer-events: auto;
+  padding: 3px 20px 6px 16px;
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links li:hover .sub-menu.blank{
+  top: 50%;
+  transform: translateY(-50%);
+}
+.app-footer{
+  
+  background-color: #ece9e9;
+  padding: 10px;
+  font-size: 14px;
+}
+
+
+.home-section{
+  /* background: #E4E9F7; */
+  height: 100vh;
+  left: 215px;
+  width: calc(100% - 215px);
+  transition: all 0.5s ease;
+  position: absolute;
+  overflow: hidden;
+  overflow-y:auto ;
+    /* background: red; */
+    
+    padding-top: 36px;
+}
+.sidebar.close ~ .home-section{
+  left: 78px;
+  width: calc(100% - 78px);
+}
+.home-section .home-content{
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-start: 25px;
+  width: fit-content;
+  position: sticky;
+}
+.home-section .home-content .bx-menu,
+.home-section .home-content .text{
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu{
+  cursor: pointer;
+}
+.home-section .home-content .text{
+  font-size: 26px;
+  font-weight: 600;
+}
+@media (max-width: 400px) {
+  .sidebar.close .nav-links li .sub-menu{
+    display: none;
+  }
+  .sidebar{
+    width: 78px;
+  }
+  .sidebar.close{
+    width: 0;
+  }
+  .home-section{
+    left: 78px;
+    width: calc(100% - 78px);
+    z-index: 100;
+  }
+  .sidebar.close ~ .home-section{
+    width: 100%;
+    left: 0;
+  }
+}
+.logo{
+  display: flex; 
+  flex-direction: row;
+  width: 175px;
+  margin-top: 15px;
+  margin-left:20px;
+}
+.notification{
+  display: flex; flex-direction: row;width: 100px;
+}
+.notification>img{
+  margin-top:4px;
+}
+.sidebar {
+      height: 100%;
+      width: max-content;
+      position: fixed;
+      top: 25px;
+      /* left: -250px; */
+      background-color: #333;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 20px;
+    }
+    .sidebar a {
+      padding: 10px 25px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #fff;
+      display: block;
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #20a8d8;
+      color: #fff;
+      opacity: 1;
+      
+    }
+
+    /* Style the button to open the sidebar */
+    .openbtn {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      font-size: 30px;
+    }
+</style>
+</head>
+<body class="">
+    <nav class="navbar1">
+
+        <div><img src="./assets/newwhitelogo.svg" alt="" width="200" height="70"></div>
+        <div class="logo">
+            <div><select name="country" id="Country" autocomplete="true">
+                    <option style="background-image:url('./assets/indiaflag.svg');" value="India">
+
+                        India </option>
+                    <option value="USA">USA</option>
+                </select>
+            </div>
+            <div class="notification">
+                <img  src="./assets/notification.jpeg" alt="" height="30">
+                
+            </div>
+            <div class="user">
+              <span><a  class ="text-light" alt="Suman Arigela" href="https://www.assetmonk.com/"> SA</a></span>
+          </div>
+        </div>
+
+      </div>
+
+    </nav>
+    <div class=" content container container-fluid d-flex row">
+  <div class="sidebar " id="mySidebar">
+   
+    <!-- <ul class="nav-links">
+       <li> 
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Settings</span>
+        </a>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="link_name">Settings</span>
+          </a>
+          <i class='bx bxs-chevron-left arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Settings</a></li>
+          <li><a href="#">Executive</a></li>
+          <li><a href="#">Systemlogs</a></li>
+        </ul>
+      </li>
+      <li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-user' ></i>
+              <span class="link_name">Investor</span>
+            </a>
+            <i class='bx bxs-chevron-left arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Investor</a></li>
+            <li><a href="#">User</a></li>
+            <li><a href="#">Profile</a></li>
+          </ul>
+        </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-money' ></i>
+          <span class="link_name">Investments</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-transfer' ></i>
+          <span class="link_name">Transfers</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name">CP payouts</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Won opportunities</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Notifications</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Help desk</span>
+        </a>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Product</span>
+          </a>
+          <i class='bx bxs-chevron-left arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Product</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Company</a></li>
+          <li><a href="#">Trustee</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Partner</span>
+          </a>
+          <i class='bx bxs-chevron-left arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Partner</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Opportunity</a></li>
+          <li><a href="#">Investors</a></li>
+          <li><a href="#">Properties</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-compass' ></i>
+          <span class="link_name">Finance</span>
+        </a>
+        
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-history'></i>
+          <span class="link_name">Transcations</span>
+        </a>
+         <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">History</a></li>
+        </ul> -->
+      <!-- </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-collection' ></i>
+          <span class="link_name">Blogs</span>
+        </a>
+      </li>
+      <li>  
+  </li>
+</ul> --> -->
+
+  </div>
+  
+  <section class="home-section m-auto">
+    <div class="home-content d-flex col">
+      <!-- <i class='bx bx-menu' ></i> -->
+      <p class="mt-3">Welcome to Bentolabs & AssetMonk</p>
+      <!-- <span class="text">Drop Down Sidebar</span> -->
+      <br>
+  
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col text-primary">#</th>
+            <th scope="col text-primary">First</th>
+            <th scope="col text-primary">Last</th>
+            <th scope="col text-primary">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <img src="./assets/AsseMonkHomepage.png"  alt="AssetMonk">
+    </div>
+    <div class="app-footer">
+  <span class="text-dark">Assetmonk - 2023. All rights reserved.
+  </span>
+  </div>
+  </section>
+  
+</div>
+
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+
+  const navItems = [
+    { text: 'Home', link: 'index2.html' },
+    { text: 'About', link: '#' },
+    { text: 'Services', link: '#' },
+    { text: 'Contact', link: '#'}
+  ];
+  function populateSidebar() {
+    const sidebar = document.getElementById('mySidebar');
+    sidebar.innerHTML = ''; // Clear existing content
+
+    navItems.forEach(item => {
+      const link = document.createElement('a');
+      link.href = item.link;
+      link.textContent = item.text;
+      sidebar.appendChild(link);
+    });
+  }
+
+
+  window.onload = populateSidebar;
+
+  </script>
+</body>
+</html> 
