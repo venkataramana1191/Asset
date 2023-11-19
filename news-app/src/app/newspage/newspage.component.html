@@ -1,8 +1,15 @@
 
-<div id="news" class="news" #news style="text-align: center;
+<head>
+    <meta property="og:title" content="Your Page News">
+    <meta property="og:description" content="news page description its angular news experimaent">
+    <meta property="og:image" content="http://localhost:4200/img">
+    <meta property="og:url" content="https://assetmonk.com/">
+    <meta property="og:type" content="">
+</head>
+<body>
+    <div id="news" class="news" #news style="text-align: center;
                 margin-left: auto;
                 margin-top:20px">
-
     <div>
         <span>newsHeadLine</span>
     </div>
@@ -21,7 +28,9 @@ margin: auto;">
         <button class="btn btn-primary" (click)="Share()">
            Share
         </button>
-        <button *ngIf="dataUrl"> <a [href]="getWhatsappShareLink()" target="_blank">Share on WhatsApp</a></button>
+        <!-- <button *ngIf="dataUrl"> <a [href]="getWhatsappShareLink()" target="_blank">Share on WhatsApp</a></button> -->
+        
+        <button *ngIf="share" > <a [href]="generateWhatsappLink()" target="_blank">Share on WhatsApp</a></button>
 </div>
 <div #screen>
     <p>
@@ -49,3 +58,4 @@ margin: auto;">
   <button (click)="fullCaptureWithDownload()">Full BODY capture & Download</button>
   <h2>My Capture:</h2>
   <img src="{{ img }}" />
+</body>

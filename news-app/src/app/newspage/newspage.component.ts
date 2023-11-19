@@ -1,4 +1,6 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+// import { Meta } from '@angular/platform-browser';
+// import { Meta } from '@ngx-meta/core';
 import { NgxCaptureService } from 'ngx-capture';
 import { tap } from 'rxjs/operators';
 
@@ -11,6 +13,7 @@ export class NewspageComponent {
 
 
   name = 'Angular';
+  share:boolean=false;
   img = '';
   div =document.getElementById("news");
   body = document.body;
@@ -22,9 +25,19 @@ export class NewspageComponent {
   @ViewChild('screen', { static: true }) screen: any;
 
   @ViewChild('news', { static: true }) news: any;
-  constructor(private captureService: NgxCaptureService) {}
+  constructor(private captureService: NgxCaptureService,
+    // @Inject(Meta) private readonly  meta: Meta
+    ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    // this.meta.setTitle('Your Page Title');
+    // this.meta.setTag('description', 'Your page description');
+    // this.meta.setTag('og:title', 'Your Open Graph Title');
+    // this.meta.setTag('og:description', 'Your Open Graph Description');
+    // this.meta.setTag('og:image', 'URL to your Open Graph Image');
+   
+  }
   divCapture() {
     this.captureService
       .getImage(this.screen.nativeElement, true)
@@ -81,6 +94,7 @@ export class NewspageComponent {
 
 Share(){
   // this.fullCaptureWithDownload();
+  this.share=true;
  this.newsCapture();
 
   console.log("sharing news")
@@ -96,5 +110,24 @@ getWhatsappShareLink(): string {
   return `https://wa.me/?text=${encodedMessage}%0A${encodedImageLink}`;
 
   // return `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent('Check out this image:')}&image=${encodeURIComponent(this.dataUrl)}`;
+}
+
+title: string = 'AssetMonk | Realestate News ';
+description: string = 'News page description';
+imageLink: string = 'https://images.app.goo.gl/QPxUmDugP9L8ZdHA8';
+
+generateWhatsappLink(): string {
+  const encodedTitle = encodeURIComponent(this.title);
+  const encodedDescription = encodeURIComponent(this.description);
+  // const encodedImageLink = encodeURIComponent(this.imageLink);
+  const encodedBase64Image = encodeURIComponent(this.img);
+
+  return `https://wa.me/?text=${encodedTitle}%0A${encodedDescription}%0A${encodedBase64Image}`;
+}
+
+shareOnWhatsapp() {
+  const whatsappLink = this.generateWhatsappLink();
+  window.open(whatsappLink, '_blank');
+
 }
 }
